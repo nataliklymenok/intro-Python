@@ -10,16 +10,14 @@ if operation in ("+", "-", "*", "/"):
     
     if operation == "+":
         result = str(int(input1) + int(input2))
-    if operation == "-":
+    elif operation == "-":
         result = str(int(input1) - int(input2))
-    if operation == "*":
+    elif operation == "*":
         result = str(int(input1) * int(input2))
-    if operation == "/":
+    elif operation == "/":
         result = str(int(input1) / int(input2))            
     print("Результат: " + result)
+    
 else:
     print("Помилка! Невірна операція!")
     
-
-
-
