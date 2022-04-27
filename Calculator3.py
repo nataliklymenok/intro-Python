@@ -1,33 +1,29 @@
 print("Привіт!")
-print("Введіть перше ціле число:")
-input1 = input()
-print("Введіть одну з операцій: +, -, *, /, +++:")
-operation = str(input())
+input1 = int(input("Введіть перше ціле число: "))
+operation = str(input("Введіть одну з операцій: +, -, *, /, +++: "))
 
 if operation in ("+", "-", "*", "/", "+++"):
-    print("Введіть друге ціле число:")
-    input2 = input()
+    input2 = int(input("Введіть друге ціле число: "))
     
     if operation == "+":
-        result = int(input1) + int(input2)
+        result = input1 + input2
     elif operation == "-":
-        result = int(input1) - int(input2)
+        result = input1 - input2
     elif operation == "*":
-        result = int(input1) * int(input2)
+        result = input1 * input2
     elif operation == "/":
         try:
-            result = int(input1) / int(input2)
+            result = input1 / input2
         except ZeroDivisionError:
             print("На 0 ділити неможна!")
             result = "inf"
     elif operation == "+++":
-        result = int(input1) + int(input2)
+        result = input1 + input2
         while input2 != "":
-            print("Введіть наступне ціле число:")
-            input2 = input()
+            input2 = input("Введіть наступне ціле число: ")
             if input2.isdigit():
                 result += int(input2)
-    print("Результат: " + str(result))
+    print(f"Результат: {str(result)}")
    
 else:
     print("Помилка! Невірна операція!")
