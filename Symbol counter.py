@@ -1,5 +1,5 @@
 print("Привіт!")
-text = input("Введіть будь-якій текст: ")
+text = input("Введіть будь-який текст: ")
 
 text_list = list(text)
 result = dict()
