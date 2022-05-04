@@ -12,4 +12,4 @@ while True:
         r = random.randint(r - 1, r + 1)
     except KeyboardInterrupt:
         print(f"{whitespace * r} o_O")
-        exit()
+        break
