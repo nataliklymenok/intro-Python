@@ -1,14 +1,19 @@
-
-def isNumber(question):
+def number(question, isRepeatedly=False):
     inp = input(question)
 
     if isInt(inp):
         return int(inp)
     elif isFloat(inp):
         return float(inp)
+    elif isRepeatedly:
+        if inp == "":
+            return None
+        else:
+            print("Помилка!")
+            return number(question, True)
     else:
         print("Помилка!")
-        isNumber(question)
+        return number(question)
 
 
 def isInt(inp):
@@ -17,6 +22,7 @@ def isInt(inp):
         return True
     except ValueError:
         return False
+
 
 def isFloat(inp):
     try:
@@ -27,11 +33,11 @@ def isFloat(inp):
 
 
 print("Привіт!")
-input1 = isNumber("Введіть перше число: ")
+input1 = number("Введіть перше число: ")
 operation = input("Введіть одну з операцій: +, -, *, /, +++: ")
 
 if operation in ("+", "-", "*", "/", "+++"):
-    input2 = isNumber("Введіть друге число: ")
+    input2 = number("Введіть друге число: ")
 
     if operation == "+":
         result = input1 + input2
@@ -47,18 +53,13 @@ if operation in ("+", "-", "*", "/", "+++"):
             result = "inf"
     elif operation == "+++":
         result = input1 + input2
-        while input2 != "":
-            input2 = isNumber("Введіть наступне число: ")
-            result += input2
-    print(f"Результат: {str(result)}")
+        while True:
+            input2 = number("Введіть наступне число: ", True)
+            if input2 != None:
+                result += input2
+            else:
+                break
+    print(f"Результат: {result}")
 
 else:
     print("Помилка! Невірна операція!")
-
-
-
-
-#1. Тепер користувач має мати можливість вводити будь-які числа, а не тільки цілі (тобто 3.5, 0.001, -25.3 - також мають підходити)
-
-#2. Зробити функцію яка запитує у користувача число та перевіряє чи це дійно число.
-#Якщо ні - виводить помилку та запитує ще раз. Використати цю функцію для запиту числа в користувача.
