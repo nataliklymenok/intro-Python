@@ -21,7 +21,7 @@ for element in inp_list:
         print("Введене число не відповідає базі")
         exit()
 
-for element in new_list:
-     index = int(new_list.index(element))
-     dec += int(element) * 23 ** index
+for index, element in enumerate(new_list):
+    dec += int(element) * 23 ** index
+
 print("Ваше число в десятковій системі числення: ", dec)
