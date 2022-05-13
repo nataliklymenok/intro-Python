@@ -47,4 +47,3 @@ if direction == 2:
             new_text.append(character)
 
 print(''.join(new_text))
-
