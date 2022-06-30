@@ -25,7 +25,7 @@ class Calculator:
         _result = a
         for element in b:
             _result += element
-            return _result
+        return _result
 
     OPERATIONS = {
         '+': add,
@@ -55,19 +55,22 @@ class Calculator:
 
 class Verifier:
 
-    def is_operation_common(self, inp):
+    @staticmethod
+    def is_operation_common(inp):
         if inp in ("+", "-", "*", "/"):
             return True
         else:
             return False
 
-    def is_operation_difficult(self, inp):
+    @staticmethod
+    def is_operation_difficult(inp):
         if inp == "+++":
             return True
         else:
             return False
 
-    def is_float(self, inp):
+    @staticmethod
+    def is_float(inp):
         try:
             float(inp)
             return True
@@ -76,33 +79,35 @@ class Verifier:
 
 
 class Creator:
-    verifier = Verifier()
     operand1 = None
     operand2 = None
 
-    def create_first_operand(self):
+    @staticmethod
+    def create_first_operand():
         global operand1
         is_number = False
         while not is_number:
             operand1 = input("Введіть перше число: ")
-            is_number = verifier.is_float(operand1)
+            is_number = Verifier.is_float(operand1)
         return float(operand1)
 
-    def create_second_operand(self):
+    @staticmethod
+    def create_second_operand():
         global operand2
         is_number = False
         while not is_number:
             operand2 = input("Введіть друге число: ")
-            is_number = verifier.is_float(operand2)
+            is_number = Verifier.is_float(operand2)
         return [float(operand2)]
 
-    def create_multi_operand(self):
+    @staticmethod
+    def create_multi_operand():
         is_number = True
         _operand2 = []
         while is_number:
             input_val = input("Введіть наступне число: ")
             if input_val != '':
-                if not verifier.is_float(input_val):
+                if not Verifier.is_float(input_val):
                     continue
                 _operand2.append(float(input_val))
             else:
@@ -111,20 +116,18 @@ class Creator:
 
 
 if __name__ == '__main__':
-    verifier = Verifier()
-    create = Creator()
     operand1 = None
     operand2 = None
 
     operation = input("Введіть одну з операцій: +, -, *, /, +++: ")
 
-    if verifier.is_operation_common(operation):
-        operand1 = create.create_first_operand()
-        operand2 = create.create_second_operand()
+    if Verifier.is_operation_common(operation):
+        operand1 = Creator.create_first_operand()
+        operand2 = Creator.create_second_operand()
 
-    elif verifier.is_operation_difficult(operation):
-        operand1 = create.create_first_operand()
-        operand2 = create.create_multi_operand()
+    elif Verifier.is_operation_difficult(operation):
+        operand1 = Creator.create_first_operand()
+        operand2 = Creator.create_multi_operand()
 
     calc = Calculator(operation, operand1, operand2)
     result = calc.calculate(operation, operand1, operand2)
